@@ -15,4 +15,5 @@ The idea is to have partial content of the site (like header, footer, menu, each
 If im able to i will try to use semantic versioning with git tags and use that to generate the changelog
 
 to generate the changelog document this command is used:
+
 ``` git for-each-ref --format="%(refname:short)|%(taggerdate)|%(subject)" refs/tags > changelog.txt ```
