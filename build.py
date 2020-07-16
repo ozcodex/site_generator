@@ -1,4 +1,5 @@
 from configparser import ConfigParser
+import os
 
 config = ConfigParser()
 
@@ -55,18 +56,25 @@ def generateChangelog():
     return content
 
 def generateSiteMap():
-    content = "<ul>"
-    content += "<li><a href=\"index.html\">Index</a></li>"
-    content += "<li><a href=\"changes.html\">Changelog</a></li>"
-    content += "<li><a href=\"sitemap.html\">Sitemap</a></li>"
+    content = "<ul>\n"
+    for filename in os.listdir("content"):
+        name, ext = os.path.splitext(filename)
+        if ext == '.html':
+            name = name.capitalize()
+            content += f"<li><a href=\"{filename}\">{name}</a></li>\n"
+    content += "<li><a href=\"changes.html\">Changelog</a></li>\n"
+    content += "<li><a href=\"sitemap.html\">Sitemap</a></li>\n"
+    content += "</ul>\n"
     return content
 
 def main():
     config.read("config.ini")
-    content = readFileContent("content/index.html")
-    buildPage("index")
     buildPage("changes",generateChangelog())
     buildPage("sitemap",generateSiteMap())
+    for filename in os.listdir("content"):
+        name, ext = os.path.splitext(filename)
+        if ext == '.html':
+            buildPage(name)
 
 if __name__ == "__main__" :
     main()
