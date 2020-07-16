@@ -1,80 +1,65 @@
-import configparser
+from configparser import ConfigParser
 
-config = configparser.ConfigParser()
+config = ConfigParser()
 
-config.read("config.ini")
+def readFileContent(filename):
+    f = open(filename,"r")
+    content = "".join(f.readlines())
+    return content
 
-title = config.get("header","title")
-subtitle = config.get("header","subtitle")
+def writeHeader(f,name=None):
+    title = config['header']['title']
+    subtitle = config['header']['subtitle']
+    header = readFileContent("partial/header.html")
+    f.write(header)
+    if name:
+        name = " - " + name
+    f.write(f"<title>{title}{name}</title>\n")
+    f.write(f"</head>\n")
+    f.write(f"<body>\n")
+    f.write(f"<h1>{title}</h1>\n")
+    f.write(f"<h3>{subtitle}</h3>\n")
 
-headerFile = open("partial/header.html","r")
-header = "".join(headerFile.readlines())
+def buildPage(name,content=None):
+    if not content:
+        content = readFileContent(f"content/{name}.html")
+    outputFile = open(f"out/{name}.html", "w")
+    footer = readFileContent("partial/footer.html")
+    writeHeader(outputFile,name)
+    outputFile.write(content)
+    outputFile.write(footer)
 
-footerFile = open("partial/footer.html","r")
-footer = "".join(footerFile.readlines())
+def buildChangelog():
+    changelogFile = open("changelog.txt", "r")
+    content = "<table>\n"
+    content += "<thead>\n"
+    content += "<tr>\n"
+    content += "<th>Version</th>\n"
+    content += "<th>Date</th>\n"
+    content += "<th>Changes</th>\n"
+    content += "</tr>\n"
+    content += "</thead>\n"
+    content += "<tbody>\n"
+    for change in changelogFile.readlines():
+        parts = change.split("|")
+        vers = parts[0]
+        date = parts[1]
+        desc = parts[2]
+        content += "<tr>\n"
+        content += f"<td>{vers}</td>\n"
+        content += f"<td>{date}</td>\n"
+        content += f"<td>{desc}</td>\n"
+        content += "</tr>\n"
+    content += "</tbody>\n"
+    content += "</table>\n"
+    return content
 
-contentFile = open("content/index.html","r")
-content = "".join(contentFile.readlines())
+def main():
+    config.read("config.ini")
+    content = readFileContent("content/index.html")
+    buildPage("index")
+    content = buildChangelog()
+    buildPage("changes",content)
 
-#start of index page
-
-outputFile = open("out/index.html", "w")
-
-outputFile.write(header)
-
-outputFile.write(f"<title>{title}</title>\n")
-outputFile.write(f"</head>\n")
-outputFile.write(f"<body>\n")
-
-outputFile.write(f"<h1>{title}</h1>\n")
-outputFile.write(f"<h3>{subtitle}</h3>\n")
-
-outputFile.write(content)
-
-outputFile.write(footer)
-
-#end of index page
-
-#start of changelog
-
-outputFile = open("out/changes.html", "w")
-
-outputFile.write(header)
-
-outputFile.write(f"<title>{title} - Changelog</title>\n")
-outputFile.write(f"</head>\n")
-outputFile.write(f"<body>\n")
-
-outputFile.write(f"<h1>{title}</h1>\n")
-outputFile.write(f"<h3>{subtitle}</h3>\n")
-
-outputFile.write("<table>\n")
-outputFile.write("<tr>\n")
-outputFile.write("<th>Version<th>\n")
-outputFile.write("<th>Date<th>\n")
-outputFile.write("<th>Changes<th>\n")
-outputFile.write("</tr>\n")
-
-
-#start of dinamicly generate table
-
-changelogFile = open("changelog.txt", "r")
-
-for change in changelogFile.readlines():
-    parts = change.split("|")
-    vers = parts[0]
-    date = parts[1]
-    desc = parts[2]
-    
-    outputFile.write("<tr>\n")
-    outputFile.write(f"<td>{vers}</td>\n")
-    outputFile.write(f"<td>{date}</td>\n")
-    outputFile.write(f"<td>{desc}</td>\n")
-    outputFile.write("</tr>\n")
-
-#end of dinamic table
-outputFile.write(f"</table>\n")
-
-outputFile.write(footer)
-
-#end of changelog
+if __name__ == "__main__" :
+    main()
