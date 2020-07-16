@@ -13,7 +13,7 @@ def writeHeader(f,name=None):
     header = readFileContent("partial/header.html")
     f.write(header)
     if name:
-        name = " - " + name
+        name = " - " + name.capitalize()
     f.write(f"<title>{title}{name}</title>\n")
     f.write(f"</head>\n")
     f.write(f"<body>\n")
@@ -29,7 +29,7 @@ def buildPage(name,content=None):
     outputFile.write(content)
     outputFile.write(footer)
 
-def buildChangelog():
+def generateChangelog():
     changelogFile = open("changelog.txt", "r")
     content = "<table>\n"
     content += "<thead>\n"
@@ -54,12 +54,19 @@ def buildChangelog():
     content += "</table>\n"
     return content
 
+def generateSiteMap():
+    content = "<ul>"
+    content += "<li><a href=\"index.html\">Index</a></li>"
+    content += "<li><a href=\"changes.html\">Changelog</a></li>"
+    content += "<li><a href=\"sitemap.html\">Sitemap</a></li>"
+    return content
+
 def main():
     config.read("config.ini")
     content = readFileContent("content/index.html")
     buildPage("index")
-    content = buildChangelog()
-    buildPage("changes",content)
+    buildPage("changes",generateChangelog())
+    buildPage("sitemap",generateSiteMap())
 
 if __name__ == "__main__" :
     main()
