@@ -1,7 +1,4 @@
-from configparser import ConfigParser
 import os
-
-config = ConfigParser()
 
 def readFileContent(filename):
     f = open(filename,"r")
@@ -9,21 +6,14 @@ def readFileContent(filename):
     return content
 
 def writeMenu(f):
-    menu = config['menu']['title']
+    menu = "Indice"
     f.write(f"<a href=\"index.html\">{menu}</a>")
 
 def writeHeader(f,name=None):
-    title = config['header']['title']
-    subtitle = config['header']['subtitle']
     header = readFileContent("partial/header.html")
     f.write(header)
     if name:
         name = " - " + name.capitalize()
-    f.write(f"<title>{title}{name}</title>\n")
-    f.write(f"</head>\n")
-    f.write(f"<body>\n")
-    f.write(f"<h1>{title}</h1>\n")
-    f.write(f"<h3>{subtitle}</h3>\n")
     writeMenu(f)
 
 def buildPage(name,content=None):
@@ -73,7 +63,6 @@ def generateSiteMap():
     return content
 
 def main():
-    config.read("config.ini")
     buildPage("changes",generateChangelog())
     buildPage("sitemap",generateSiteMap())
     for filename in os.listdir("content"):
