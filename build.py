@@ -8,6 +8,10 @@ def readFileContent(filename):
     content = "".join(f.readlines())
     return content
 
+def writeMenu(f):
+    menu = config['menu']['title']
+    f.write(f"<a href=\"index.html\">{menu}</a>")
+
 def writeHeader(f,name=None):
     title = config['header']['title']
     subtitle = config['header']['subtitle']
@@ -20,6 +24,7 @@ def writeHeader(f,name=None):
     f.write(f"<body>\n")
     f.write(f"<h1>{title}</h1>\n")
     f.write(f"<h3>{subtitle}</h3>\n")
+    writeMenu(f)
 
 def buildPage(name,content=None):
     if not content:
