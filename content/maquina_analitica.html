@@ -1,0 +1,57 @@
+<h1>Maquina Analitica Autonoma</h1>
+
+The idea behind the autonomous computer is have a machine with the capacity to work by itself, generating his own power and with a basic functionality.
+
+This idea born in the context of a post-apocalyptic world, and a small group of people surviving, but this is also applicable to autonomous communities that want/have to live disconnected to the society, for example small towns in remote places, or the people that live far away in the mountains, etc.
+Problems
+
+There are many problems to solve.
+
+By one side is the physical part, the hardware, the components to use and how to guarantee that it can be easily repaired, and the most important part, the way to generate the energy to work.
+
+By other side, the logical part, the software, what kind of operating system to use, and what kind of programs to have.
+Hardware Problems
+
+The initial idea is to use raspberry pi, that one is a out-of-box computer ready to use and leave us only with the problem of power generation, but make it hard to repair.
+
+Another approach is to use arduino or other kind of micro-processor and build the components to be used as ram, storage, video device, etc... the good point of use arduino is the possibility to build our own operating system adapted to the specific needs and increase the efficiency of system, the power use or the devices.
+
+For data storage multiple ways to access to information must be provided, the basic one will be the usb interface to read flash memories, but for more persistent information a magnetic tape must be used, this can be archived through floppy disks or audio based over cassettes, the use of optical disk is discouraged since they are very sensible to environmental threats.
+
+The communication between machines is a big problem that must be studied later. It must be able to access to internet and use LAN services. Maybe a radio based communication can be provided, but for that we must have first a radio system and community working.
+Software Problems
+
+Leaving aside the problem of the Operating system as a to-solve-later now we can focus on what kind of services and the requirement of that services.
+
+#### Data Storage. One of the main uses of this computer can be the recording of information, have a journal, work log, etc... This implies the need of a text file writer and a text file reader. A way to access to large collection of data must be also provided, the main case of use of this is accessing to a zim file with all the wikipedia stored. Other information that is important to store and can have specific build applications is the financial accounting, fast notes, and others...
+
+#### Communication If more that one of this machines are near is a good idea to stablish a way to transmit data, this can work over a client/server protocol where a main machine acts as the server sending information, and the clients just listen to it, to a more complex where the clients can send information to the server too.
+
+If we assume a LAN working we can use this one as the way. Some rules about how this LAN must be build, usage over this assumption we can focus on services as a public chat, a kind of IRC where we can have some channels, group chat and private messages. A super basic mail system, a file transmitting system and a personal public space, as a blog or website.
+
+#### Programming Is important to have a service that allow to build new programs to the specific architecture of this machine, can be an interactive console or a compiled system, but this is a need, to me the best option is build a super simple stack of instructions that can be executed on the main console, and a way to save those instruction on a script and load they for execution.
+
+
+
+
+-------------------
+
+la idea ahora es que sea modular, modulos que se encarguen de tareas 
+especificas, que me permitan conectarlos, desconectarlos y reprogramarlos,
+esto trae una serie de nuevos problemas a resolver, pero a su vez permite un
+desarrollo escalable que permitirá al proyecto ver la luz por fases, un modulo
+a la vez.
+
+Los primeros modulos que se deben trabajar son el de programacion tipo basic,
+y uno para la salida de video, la idea es que varios modulos sean construidos
+con este fin, teniendo distintas salidas y pantallas. Una de las cosas mas 
+importantes de este proceso y que es en lo que mas me interesa centrarme es el
+diseño de protocolos para la comunicacion entre modulos.
+
+entre las cosas que quiero que pueda hacer la maquina es:
+- escribir e intrepretar codigo
+- produccion musical, posiblemente mod o midi
+- ofimatica basica: procesamiento de texto, hojas de calculo y presentaciones.
+- algunos videojuegos simples en su estructura pero complejos en contenido
+- lectura y escritura de archivos, en distintos medios, usb, sd, diskette, etc.
+- sistema de comunicacion con otros dispositivos (bluethoot, lan, ir, etc)
