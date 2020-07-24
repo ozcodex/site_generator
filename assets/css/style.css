@@ -1,0 +1,11 @@
+:root {
+  --beau-blue: #C8E0F4;
+  --light-cornflower-blue: #9DD1F1;
+  --blue-ncs: #508AA8;
+  --rich-black-fogra-29 : #031927;
+  --international-orange-engineering: #BA1200;
+}
+
+html {
+  background-color: var(--beau-blue) 
+}
