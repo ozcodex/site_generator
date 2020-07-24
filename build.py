@@ -26,7 +26,6 @@ def generateChangelog():
     content += "<thead>\n"
     content += "<tr>\n"
     content += "<th>Version</th>\n"
-    content += "<th>Date</th>\n"
     content += "<th>Changes</th>\n"
     content += "</tr>\n"
     content += "</thead>\n"
@@ -34,11 +33,9 @@ def generateChangelog():
     for change in changelogFile.readlines():
         parts = change.split("|")
         vers = parts[0]
-        date = parts[1]
-        desc = parts[2]
+        desc = parts[1]
         content += "<tr>\n"
         content += f"<td>{vers}</td>\n"
-        content += f"<td>{date}</td>\n"
         content += f"<td>{desc}</td>\n"
         content += "</tr>\n"
     content += "</tbody>\n"
