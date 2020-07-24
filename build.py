@@ -5,16 +5,11 @@ def readFileContent(filename):
     content = "".join(f.readlines())
     return content
 
-def writeMenu(f):
-    menu = "Indice"
-    f.write(f"<a href=\"index.html\">{menu}</a>")
-
 def writeHeader(f,name=None):
     header = readFileContent("partial/header.html")
     f.write(header)
     if name:
         name = " - " + name.capitalize()
-    writeMenu(f)
 
 def buildPage(name,content=None):
     if not content:
