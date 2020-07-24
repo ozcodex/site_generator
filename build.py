@@ -46,7 +46,8 @@ def generateChangelog():
     return content
 
 def generateSiteMap():
-    content = "<ul>\n"
+    content = "<p>Estas son todas las paginas presentes en este sitio:</p>"
+    content += "<ul>\n"
     for filename in os.listdir("content"):
         name, ext = os.path.splitext(filename)
         if ext == '.html':

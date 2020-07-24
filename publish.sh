@@ -6,8 +6,8 @@ git for-each-ref --format="%(refname:short)|%(taggerdate:short)|%(subject)" refs
 
 python3 build.py
 
-cp assets/* out/
+cp -r assets/* out/
 
 git push
 
-cp out/* ../ZeroNet/my_site/
+cp -r out/* ../ZeroNet/my_site/
