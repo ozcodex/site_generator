@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git commit -am "Update Content"
+
 mkdir -p out
 
 git for-each-ref --format="%(refname:short)|%(subject)" refs/tags > changelog.txt
