@@ -1,3 +1,4 @@
+/*Define the basic color palette of site*/
 :root {
   --beau-blue: #C8E0F4;
   --light-cornflower-blue: #9DD1F1;
@@ -24,4 +25,19 @@ header {
   text-align: center;
   padding: 2.5em 2em 0;
   border-bottom: 1px solid var(--rich-black-fogra-29)
+}
+
+header .h1 {
+  margin: 0.2em 0;
+  font-size: 3em;
+  font-weight: 300;
+}
+
+header .h2 {
+  font-weight: 300
+}
+
+/*Remove special style from links*/
+a, a:visited, a:hover, a:active {
+  color: inherit;
 }
