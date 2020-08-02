@@ -22,4 +22,6 @@ header {
   margin: 0;
   color: var(--blue-ncs);
   text-align: center;
+  padding: 2.5em 2em 0;
+  border-bottom: 1px solid var(--rich-black-fogra-29)
 }
