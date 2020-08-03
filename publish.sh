@@ -4,7 +4,7 @@ git commit -am "Update Content"
 
 mkdir -p out
 
-FORMAT = "%(refname:short)|%(*creatordate:short)|%(subject)"
+FORMAT="%(refname:short)|%(*creatordate:short)|%(subject)"
 
 git for-each-ref --sort=-refname --format="$FORMAT" refs/tags > changelog.txt
 
