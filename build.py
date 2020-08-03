@@ -56,7 +56,7 @@ def generateSiteMap():
     return content
 
 def main():
-    buildPage("changes",generateChangelog())
+    buildPage("changelog",generateChangelog())
     buildPage("sitemap",generateSiteMap())
     for filename in os.listdir("content"):
         name, ext = os.path.splitext(filename)
