@@ -4,7 +4,9 @@ git commit -am "Update Content"
 
 mkdir -p out
 
-git for-each-ref --format="%(refname:short)|%(subject)" refs/tags > changelog.txt
+FORMAT = "%(refname:short)|%(*creatordate:short)|%(subject)"
+
+git for-each-ref --sort=-refname --format="$FORMAT" refs/tags > changelog.txt
 
 python3 build.py
 
