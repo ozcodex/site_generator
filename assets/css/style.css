@@ -50,6 +50,12 @@ header h2 {
   color: var(--blue-ncs)
 }
 
+/* Content related styles*/
+
+td {
+  padding: 15px;
+}
+
 /*Remove special style from links*/
 a, a:visited, a:hover, a:active {
   color: inherit;
