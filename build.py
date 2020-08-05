@@ -65,7 +65,6 @@ def buildPagesIn(folder,route):
         name, ext = os.path.splitext(filename)
         path = os.path.join(folder, name)
         if os.path.isdir(path):
-           print(path, "is a directory")
            buildPagesIn(path,route+name+"/")
         if ext == '.html':
             buildPage(name,route)
