@@ -11,10 +11,12 @@ def writeHeader(f,name=None):
     if name:
         name = " - " + name.capitalize()
 
-def buildPage(name,content=None):
+def buildPage(name,route,content=None):
     if not content:
-        content = readFileContent(f"content/{name}.html")
-    outputFile = open(f"out/{name}.html", "w")
+        content = readFileContent(f"content/{route}{name}.html")
+    if not os.path.isdir(f"out/{route}"):
+        os.mkdir(f"out/{route}")
+    outputFile = open(f"out/{route}{name}.html", "w")
     footer = readFileContent("partial/footer.html")
     writeHeader(outputFile,name)
     outputFile.write(content)
@@ -58,13 +60,22 @@ def generateSiteMap():
     content += "</ul>\n"
     return content
 
-def main():
-    buildPage("changelog",generateChangelog())
-    buildPage("sitemap",generateSiteMap())
-    for filename in os.listdir("content"):
+def buildPagesIn(folder,route):
+    for filename in os.listdir(folder):
         name, ext = os.path.splitext(filename)
+        path = os.path.join(folder, name)
+        if os.path.isdir(path):
+           print(path, "is a directory")
+           buildPagesIn(path,route+name+"/")
         if ext == '.html':
-            buildPage(name)
+            buildPage(name,route)
+
+
+def main():
+    route = ""
+    buildPage("changelog",route,generateChangelog())
+    buildPage("sitemap",route,generateSiteMap())
+    buildPagesIn("content",route) 
 
 if __name__ == "__main__" :
     main()
