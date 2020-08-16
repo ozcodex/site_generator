@@ -1,0 +1,62 @@
+/*Define the basic color palette of site*/
+:root {
+  --beau-blue: #C8E0F4;
+  --light-cornflower-blue: #9DD1F1;
+  --blue-ncs: #508AA8;
+  --rich-black-fogra-29 : #031927;
+  --prussian-blue: #003153;
+}
+
+html {
+  background-color: var(--beau-blue) 
+}
+
+/*body related styles*/
+body {
+  margin: 0 auto;
+  padding: 0 2em;
+  max-width: 800px;
+  margin-bottom: 50px;
+  line-height: 1.6em;
+}
+
+body p {
+  color: var(--rich-black-fogra-29);
+}
+
+/*Header related styles*/
+header {
+  margin: 0;
+  text-align: center;
+  padding: 2.5em 2em 0;
+  border-bottom: 1px solid var(--rich-black-fogra-29)
+}
+
+header h1 {
+  color: var(--prussian-blue);
+  margin: 0.2em 0;
+  font-size: 3em;
+  font-weight: 300;
+}
+
+header h1 a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-weight: 300;
+  padding: 0;
+  margin-top: 0;
+  color: var(--blue-ncs)
+}
+
+/* Content related styles*/
+
+td {
+  padding: 15px;
+}
+
+/*Remove special style from links*/
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
