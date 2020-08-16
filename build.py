@@ -53,15 +53,23 @@ def generateChangelog():
 def generateSiteMap():
     content = "<p>Estas son todas las paginas presentes en este sitio:</p>"
     content += "<ul>\n"
-    for filename in os.listdir("content"):
-        name, ext = os.path.splitext(filename)
-        if ext == '.html':
-            name = name.capitalize()
-            content += f"<li><a href=\"{filename}\">{name}</a></li>\n"
-    content += "<li><a href=\"changes.html\">Changelog</a></li>\n"
-    content += "<li><a href=\"sitemap.html\">Sitemap</a></li>\n"
+    for filename in getLinksOf("content"):
+        content += f"<li><a href=\"{filename}.html\">{filename}</a></li>\n"
+    content += "<li><a href=\"changes.html\">changelog</a></li>\n"
+    content += "<li><a href=\"sitemap.html\">sitemap</a></li>\n"
     content += "</ul>\n"
     return content
+
+def getLinksOf(folder,route=""):
+    links = list()
+    for filename in os.listdir(folder):
+        name, ext = os.path.splitext(filename)
+        path = os.path.join(folder, name)
+        if os.path.isdir(path):
+           links += getLinksOf(path,route+name+"/")
+        if ext == '.html':
+            links.append(route+name)
+    return links
 
 def buildPagesIn(folder,route):
     for filename in os.listdir(folder):
