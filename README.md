@@ -6,6 +6,8 @@ http://127.0.0.1:43110/19NW5k68A3qRsomy42hLBZFsHbQ6kFg2yN/index.html
 
 You need to have [Zeronet](https://github.com/HelloZeroNet/ZeroNet) on you machine to be able to visit that site.
 
+A mirror to the site was published in this repository at: [19NW5k68A3qRsomy42hLBZFsHbQ6kFg2yN](https://github.com/ozcodex/site_generator/19NW5k68A3qRsomy42hLBZFsHbQ6kFg2yN/)
+
 I want to do it in the lowest level possible, using only the language tools, without external libraries.
 
 Initially i will use python to make the things a bit simpler.
