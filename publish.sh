@@ -23,6 +23,8 @@ python3 build.py
 cp -r assets/* out/
 cp -r out/* ../ozcodex.github.io/
 rm -r out/*
+
+git --git-dir=../ozcodex.github.io/.git commit -am "Update Content"
 git --git-dir=../ozcodex.github.io/.git push
 
 echo "Done!"
