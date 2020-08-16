@@ -75,11 +75,10 @@ def buildPagesIn(folder,route):
 
 def main():
     global site
-    if len(sys.argv >2):
+    if len(sys.argv) > 2:
         site = str(sys.argv[1])
     else:
         site = ""
-    print("ARG:",site)
     route = ""
     buildPage("changelog",route,generateChangelog())
     buildPage("sitemap",route,generateSiteMap())
