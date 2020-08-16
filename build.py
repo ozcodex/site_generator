@@ -1,4 +1,5 @@
 import os
+import sys
 
 def readFileContent(filename):
     f = open(filename,"r")
@@ -6,7 +7,9 @@ def readFileContent(filename):
     return content
 
 def writeHeader(f,name=None):
+    global site
     header = readFileContent("partial/header.html")
+    header = header.replace("{site}",site)
     f.write(header)
     if name:
         name = " - " + name.capitalize()
@@ -71,6 +74,12 @@ def buildPagesIn(folder,route):
 
 
 def main():
+    global site
+    if len(sys.argv >2):
+        site = str(sys.argv[1])
+    else:
+        site = ""
+    print("ARG:",site)
     route = ""
     buildPage("changelog",route,generateChangelog())
     buildPage("sitemap",route,generateSiteMap())
