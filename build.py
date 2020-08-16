@@ -10,6 +10,7 @@ def writeHeader(f,name=None):
     global site
     header = readFileContent("partial/header.html")
     header = header.replace("{site}",site)
+    print(header)
     f.write(header)
     if name:
         name = " - " + name.capitalize()
@@ -83,10 +84,11 @@ def buildPagesIn(folder,route):
 
 def main():
     global site
-    if len(sys.argv) > 2:
+    if len(sys.argv) > 1 :
         site = str(sys.argv[1])
     else:
         site = ""
+    print(sys.argv,len(sys.argv))
     route = ""
     buildPage("changelog",route,generateChangelog())
     buildPage("sitemap",route,generateSiteMap())
