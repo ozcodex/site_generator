@@ -17,5 +17,6 @@ git push
 git push --tags
 
 cp -r out/* ../ZeroNet/my_site/
+cp -r out/* 19NW5k68A3qRsomy42hLBZFsHbQ6kFg2yN/
 
 echo "Done!"
