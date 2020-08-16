@@ -26,7 +26,7 @@ rm -r out/*
 
 cd ../ozcodex.github.io/
 git add .
-git -am "Update Content"
+git commit -am "Update Content"
 git push
 cd -
 
