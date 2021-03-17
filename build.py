@@ -17,6 +17,10 @@ def writeHeader(f,name=None):
 def buildPage(name,route,content=None):
     if not content:
         content = readFileContent(f"content/{route}{name}.html")
+    if '/' in route:
+        parent = route.split('/',1)[0]
+        if not os.path.isdir(f"out/{parent}"):
+            os.mkdir(f"out/{parent}")
     if not os.path.isdir(f"out/{route}"):
         os.mkdir(f"out/{route}")
     outputFile = open(f"out/{route}{name}.html", "w")
